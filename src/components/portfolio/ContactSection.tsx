@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Mail, Github, Linkedin, Send, MapPin, Loader2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -12,6 +12,9 @@ import { z } from "zod";
 const EMAILJS_SERVICE_ID = "service_yuimw2k";
 const EMAILJS_TEMPLATE_ID = "template_dhwwl5g";
 const EMAILJS_PUBLIC_KEY = "LoN6SLBfbIpG2Rx_y";
+
+// Initialize EmailJS
+emailjs.init(EMAILJS_PUBLIC_KEY);
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name is too long"),
@@ -41,7 +44,6 @@ const socialLinks = [
 ];
 
 export const ContactSection = () => {
-  const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -80,11 +82,20 @@ export const ContactSection = () => {
     setIsLoading(true);
 
     try {
-      await emailjs.sendForm(
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_name: "Sounak",
+        reply_to: formData.email,
+      };
+      
+      console.log("Sending email with params:", templateParams);
+      
+      await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
-        formRef.current!,
-        EMAILJS_PUBLIC_KEY
+        templateParams
       );
 
       toast({
@@ -94,6 +105,7 @@ export const ContactSection = () => {
 
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
+      console.error("EmailJS error:", error);
       toast({
         title: "Error",
         description: "Failed to send message. Please try again later.",
@@ -123,7 +135,7 @@ export const ContactSection = () => {
             {/* Contact Form */}
             <Card className="border-0 shadow-card backdrop-blur-sm bg-card/90">
               <CardContent className="p-6 md:p-8">
-                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-2">
                     <Label htmlFor="name">Name</Label>
                     <Input
