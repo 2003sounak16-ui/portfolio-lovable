@@ -1,6 +1,7 @@
 import { ArrowDown, Download, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { BeamsBackground } from "@/components/ui/beams-background";
 
 export const HeroSection = () => {
   const scrollToContact = () => {
@@ -8,20 +9,13 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center hero-bg overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-float" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "2s" }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl animate-pulse-slow" />
-      </div>
-
+    <BeamsBackground intensity="strong" className="min-h-screen">
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Role Badge */}
           <Badge
             variant="secondary"
-            className="mb-6 px-4 py-2 text-sm font-medium animate-fade-in"
+            className="mb-6 px-4 py-2 text-sm font-medium animate-fade-in backdrop-blur-sm bg-secondary/80"
             style={{ animationDelay: "0.2s" }}
           >
             B.Tech CSE Student
@@ -36,7 +30,7 @@ export const HeroSection = () => {
             <span className="gradient-text">Sounak Patra</span>
           </h1>
 
-          {/* Tagline with Typewriter Effect */}
+          {/* Tagline */}
           <div
             className="mb-8 animate-fade-in"
             style={{ animationDelay: "0.6s" }}
@@ -62,7 +56,7 @@ export const HeroSection = () => {
               size="lg"
               variant="outline"
               onClick={scrollToContact}
-              className="border-primary/30 hover:bg-primary/10"
+              className="border-primary/30 hover:bg-primary/10 backdrop-blur-sm"
             >
               <Mail className="mr-2 h-5 w-5" />
               Contact Me
@@ -87,6 +81,6 @@ export const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
+    </BeamsBackground>
   );
 };
