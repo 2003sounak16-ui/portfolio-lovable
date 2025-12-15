@@ -46,7 +46,7 @@ const handler = async (req: Request): Promise<Response> => {
       },
       body: JSON.stringify({
         from: "Portfolio Contact <onboarding@resend.dev>",
-        to: ["sounak.patra@example.com"], // Replace with actual email
+        to: ["2003sounak16@gmail.com"], // Your verified Resend email
         subject: `New Contact Form Submission from ${name}`,
         html: `
           <h2>New Contact Form Submission</h2>
@@ -75,7 +75,7 @@ const handler = async (req: Request): Promise<Response> => {
       },
       body: JSON.stringify({
         from: "Sounak Patra <onboarding@resend.dev>",
-        to: [email],
+        to: ["2003sounak16@gmail.com"], // Your verified Resend email (original: ${email})
         subject: "Thank you for reaching out!",
         html: `
           <h2>Thank you for contacting me, ${name}!</h2>
