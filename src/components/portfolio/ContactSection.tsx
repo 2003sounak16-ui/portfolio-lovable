@@ -8,7 +8,6 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
-import { BeamsBackground } from "@/components/ui/beams-background";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name is too long"),
@@ -100,142 +99,140 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="relative">
-      <BeamsBackground intensity="subtle" className="min-h-0 py-20 md:py-32">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-6xl mx-auto">
-            {/* Section Header */}
-            <div className="text-center mb-16">
-              <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
-                Get In <span className="gradient-text">Touch</span>
-              </h2>
-              <div className="w-20 h-1 gradient-bg mx-auto rounded-full mb-4" />
-              <p className="text-muted-foreground max-w-xl mx-auto">
-                Have a question or want to work together? Feel free to reach out!
-              </p>
-            </div>
+    <section id="contact" className="py-20 md:py-32">
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-6xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
+              Get In <span className="gradient-text">Touch</span>
+            </h2>
+            <div className="w-20 h-1 gradient-bg mx-auto rounded-full mb-4" />
+            <p className="text-muted-foreground max-w-xl mx-auto">
+              Have a question or want to work together? Feel free to reach out!
+            </p>
+          </div>
 
-            <div className="grid lg:grid-cols-2 gap-12">
-              {/* Contact Form */}
-              <Card className="border-0 shadow-card backdrop-blur-sm bg-card/80">
-                <CardContent className="p-6 md:p-8">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Name</Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        placeholder="Your name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        className={errors.name ? "border-destructive" : ""}
-                      />
-                      {errors.name && (
-                        <p className="text-sm text-destructive">{errors.name}</p>
-                      )}
-                    </div>
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Contact Form */}
+            <Card className="border-0 shadow-card backdrop-blur-sm bg-card/90">
+              <CardContent className="p-6 md:p-8">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Name</Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      placeholder="Your name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      className={errors.name ? "border-destructive" : ""}
+                    />
+                    {errors.name && (
+                      <p className="text-sm text-destructive">{errors.name}</p>
+                    )}
+                  </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="your.email@example.com"
-                        value={formData.email}
-                        onChange={handleChange}
-                        className={errors.email ? "border-destructive" : ""}
-                      />
-                      {errors.email && (
-                        <p className="text-sm text-destructive">{errors.email}</p>
-                      )}
-                    </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="your.email@example.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className={errors.email ? "border-destructive" : ""}
+                    />
+                    {errors.email && (
+                      <p className="text-sm text-destructive">{errors.email}</p>
+                    )}
+                  </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="message">Message</Label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        placeholder="Your message..."
-                        rows={5}
-                        value={formData.message}
-                        onChange={handleChange}
-                        className={errors.message ? "border-destructive" : ""}
-                      />
-                      {errors.message && (
-                        <p className="text-sm text-destructive">{errors.message}</p>
-                      )}
-                    </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="message">Message</Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      placeholder="Your message..."
+                      rows={5}
+                      value={formData.message}
+                      onChange={handleChange}
+                      className={errors.message ? "border-destructive" : ""}
+                    />
+                    {errors.message && (
+                      <p className="text-sm text-destructive">{errors.message}</p>
+                    )}
+                  </div>
 
-                    <Button
-                      type="submit"
-                      size="lg"
-                      className="w-full gradient-bg text-primary-foreground hover:opacity-90"
-                      disabled={isLoading}
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full gradient-bg text-primary-foreground hover:opacity-90"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="mr-2 h-5 w-5" />
+                        Send Message
+                      </>
+                    )}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+
+            {/* Contact Info */}
+            <div className="flex flex-col justify-center">
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-display text-xl font-semibold mb-4">
+                    Contact Information
+                  </h3>
+                  <p className="text-muted-foreground mb-6">
+                    I'm always open to discussing new projects, creative ideas,
+                    or opportunities to be part of your vision.
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-3 text-muted-foreground">
+                  <MapPin className="h-5 w-5 text-primary" />
+                  <span>Kolkata, India</span>
+                </div>
+
+                <div className="space-y-4">
+                  {socialLinks.map((link) => (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 p-4 rounded-xl bg-card/90 backdrop-blur-sm hover:shadow-primary transition-all duration-300 group"
                     >
-                      {isLoading ? (
-                        <>
-                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                          Sending...
-                        </>
-                      ) : (
-                        <>
-                          <Send className="mr-2 h-5 w-5" />
-                          Send Message
-                        </>
-                      )}
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-
-              {/* Contact Info */}
-              <div className="flex flex-col justify-center">
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="font-display text-xl font-semibold mb-4">
-                      Contact Information
-                    </h3>
-                    <p className="text-muted-foreground mb-6">
-                      I'm always open to discussing new projects, creative ideas,
-                      or opportunities to be part of your vision.
-                    </p>
-                  </div>
-
-                  <div className="flex items-center gap-3 text-muted-foreground">
-                    <MapPin className="h-5 w-5 text-primary" />
-                    <span>Kolkata, India</span>
-                  </div>
-
-                  <div className="space-y-4">
-                    {socialLinks.map((link) => (
-                      <a
-                        key={link.name}
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-4 p-4 rounded-xl bg-card/80 backdrop-blur-sm hover:shadow-primary transition-all duration-300 group"
-                      >
-                        <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                          <link.icon className="h-5 w-5 text-primary" />
+                      <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                        <link.icon className="h-5 w-5 text-primary" />
+                      </div>
+                      <div>
+                        <div className="font-medium group-hover:text-primary transition-colors">
+                          {link.name}
                         </div>
-                        <div>
-                          <div className="font-medium group-hover:text-primary transition-colors">
-                            {link.name}
-                          </div>
-                          <div className="text-sm text-muted-foreground">
-                            {link.label}
-                          </div>
+                        <div className="text-sm text-muted-foreground">
+                          {link.label}
                         </div>
-                      </a>
-                    ))}
-                  </div>
+                      </div>
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </BeamsBackground>
+      </div>
     </section>
   );
 };
