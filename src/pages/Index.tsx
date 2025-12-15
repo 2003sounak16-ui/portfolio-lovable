@@ -8,24 +8,21 @@ import { CertificationsSection } from "@/components/portfolio/CertificationsSect
 import { ExperienceSection } from "@/components/portfolio/ExperienceSection";
 import { ContactSection } from "@/components/portfolio/ContactSection";
 import { Footer } from "@/components/portfolio/Footer";
-import { ParallaxBeams } from "@/components/ui/parallax-beams";
 
 const Index = () => {
   return (
-    <ParallaxBeams intensity="medium" parallaxSpeed={0.4}>
+    <main className="min-h-screen">
       <Navbar />
-      <main className="min-h-screen">
-        <HeroSection />
-        <AboutSection />
-        <EducationSection />
-        <SkillsSection />
-        <ProjectsSection />
-        <CertificationsSection />
-        <ExperienceSection />
-        <ContactSection />
-        <Footer />
-      </main>
-    </ParallaxBeams>
+      <HeroSection />
+      <AboutSection />
+      <EducationSection />
+      <SkillsSection />
+      <ProjectsSection />
+      <CertificationsSection />
+      <ExperienceSection />
+      <ContactSection />
+      <Footer />
+    </main>
   );
 };
 
