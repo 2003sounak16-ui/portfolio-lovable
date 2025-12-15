@@ -1,7 +1,6 @@
 import { ArrowDown, Download, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { BeamsBackground } from "@/components/ui/beams-background";
 
 export const HeroSection = () => {
   const scrollToContact = () => {
@@ -9,7 +8,7 @@ export const HeroSection = () => {
   };
 
   return (
-    <BeamsBackground intensity="strong" className="min-h-screen">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Role Badge */}
@@ -81,6 +80,6 @@ export const HeroSection = () => {
           </div>
         </div>
       </div>
-    </BeamsBackground>
+    </section>
   );
 };
