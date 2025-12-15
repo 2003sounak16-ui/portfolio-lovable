@@ -1,6 +1,7 @@
 import { ArrowDown, Download, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { WavyBackground } from "@/components/ui/wavy-background";
 
 export const HeroSection = () => {
   const scrollToContact = () => {
@@ -8,7 +9,15 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <WavyBackground
+      containerClassName="min-h-screen"
+      colors={["#a855f7", "#8b5cf6", "#c084fc", "#a78bfa", "#d946ef"]}
+      waveWidth={50}
+      backgroundFill="hsl(270, 30%, 8%)"
+      blur={10}
+      speed="slow"
+      waveOpacity={0.5}
+    >
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Role Badge */}
@@ -22,11 +31,13 @@ export const HeroSection = () => {
 
           {/* Name */}
           <h1
-            className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 animate-fade-in"
+            className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 animate-fade-in text-white"
             style={{ animationDelay: "0.4s" }}
           >
             Hi, I'm{" "}
-            <span className="gradient-text">Sounak Patra</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-fuchsia-400">
+              Sounak Patra
+            </span>
           </h1>
 
           {/* Tagline */}
@@ -34,7 +45,7 @@ export const HeroSection = () => {
             className="mb-8 animate-fade-in"
             style={{ animationDelay: "0.6s" }}
           >
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl md:text-2xl text-white/70 max-w-2xl mx-auto">
               "Building solutions through code, creativity, and curiosity."
             </p>
           </div>
@@ -46,7 +57,7 @@ export const HeroSection = () => {
           >
             <Button
               size="lg"
-              className="gradient-bg text-primary-foreground shadow-primary hover:opacity-90 transition-opacity"
+              className="bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white shadow-lg shadow-purple-500/30 hover:opacity-90 transition-opacity border-0"
             >
               <Download className="mr-2 h-5 w-5" />
               Download Resume
@@ -55,7 +66,7 @@ export const HeroSection = () => {
               size="lg"
               variant="outline"
               onClick={scrollToContact}
-              className="border-primary/30 hover:bg-primary/10 backdrop-blur-sm"
+              className="border-purple-400/50 text-white hover:bg-purple-500/20 backdrop-blur-sm"
             >
               <Mail className="mr-2 h-5 w-5" />
               Contact Me
@@ -73,13 +84,13 @@ export const HeroSection = () => {
                   .querySelector("#about")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="text-white/60 hover:text-white transition-colors"
             >
               <ArrowDown className="h-6 w-6" />
             </button>
           </div>
         </div>
       </div>
-    </section>
+    </WavyBackground>
   );
 };
