@@ -19,8 +19,8 @@ const socialLinks = [
   {
     name: "Email",
     icon: Mail,
-    href: "mailto:sounak.patra@example.com",
-    label: "sounak.patra@example.com",
+    href: "mailto:2003sonuak16@gmail.com",
+    label: "2003sonuak16@gmail.com",
   },
   {
     name: "GitHub",
