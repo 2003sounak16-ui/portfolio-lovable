@@ -29,8 +29,8 @@ const socialLinks = [
   {
     name: "GitHub",
     icon: Github,
-    href: "https://github.com/sounakpatra",
-    label: "github.com/sounakpatra",
+    href: "https://github.com/sounak",
+    label: "github.com/sounak",
   },
   {
     name: "LinkedIn",
